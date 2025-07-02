@@ -1,5 +1,7 @@
 """DevLab manager orchestrating generation and validation."""
 
+from typing import Optional
+
 from .generator import CodeGenerator
 from .validator import CodeValidator
 
@@ -7,8 +9,8 @@ class DevLabManager:
     """Coordinates code generation and validation steps."""
 
     def __init__(self,
-                 generator: CodeGenerator | None = None,
-                 validator: CodeValidator | None = None) -> None:
+                 generator: Optional[CodeGenerator] = None,
+                 validator: Optional[CodeValidator] = None) -> None:
         self.generator = generator or CodeGenerator()
         self.validator = validator or CodeValidator()
 
