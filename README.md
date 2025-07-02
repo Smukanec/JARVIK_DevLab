@@ -34,6 +34,9 @@ Contributions are welcome! Fork the repository, create a feature branch and open
 ### Reporting issues
 If you encounter problems or have suggestions, please open an issue on GitHub.
 
+### License
+This project is released under the [MIT License](LICENSE).
+
 ---
 
 ## Čeština
@@ -69,4 +72,7 @@ Budeme rádi za pull requesty. Forkněte repozitář, vytvořte větev a odešle
 
 ### Hlášení chyb
 Pro nahlášení chyby nebo návrh nového vylepšení založte issue na GitHubu.
+
+### Licence
+Tento projekt je publikován pod licencí [MIT License](LICENSE).
 
