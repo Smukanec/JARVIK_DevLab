@@ -1,7 +1,5 @@
 """Placeholder code generator module."""
 
-from typing import Any
-
 class CodeGenerator:
     """Simple stub for future code generation logic."""
 
