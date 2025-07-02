@@ -19,5 +19,5 @@ class DevLabManager:
         code = self.generator.generate(prompt)
         if self.validator.validate(code):
             return code
-        # TODO: handle invalid code case
-        return ""
+        # Report validation failure with an explicit error
+        raise ValueError("Generated code failed validation")
