@@ -14,5 +14,5 @@ authors = [
 dependencies = []
 
 [tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["devlab"]
+package-dir = {"" = "src", "DevLab" = "DevLab"}
+packages = ["devlab", "DevLab"]
