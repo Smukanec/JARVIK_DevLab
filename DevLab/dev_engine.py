@@ -33,7 +33,7 @@ class DevEngine:
         self.log_dir = Path(__file__).with_name("logs")
         self.memory_dir.mkdir(exist_ok=True)
         self.log_dir.mkdir(exist_ok=True)
-        self.pipeline = Pipeline(self.config.get("url", ""))
+        self.pipeline = Pipeline(self.config.get("url", ""), self.log_dir)
 
     def _store_context(self, prompt: str, result: str) -> None:
         """Persist prompt and result into the dev_memory directory."""
