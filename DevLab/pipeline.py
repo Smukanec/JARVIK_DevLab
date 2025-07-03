@@ -1,22 +1,27 @@
 """Pipeline module for running models sequentially.
 
-This module defines a simple pipeline that runs two models in order:
-"Command R+" followed by "StrCoder". The second model receives the
-output from the first one as its prompt. The models run sequentially to
-avoid any concurrent execution.
+The pipeline inspects an input prompt, guesses the programming language
+and chooses appropriate Jarvik models. Information about the detected
+language and chosen models is written to ``logs/`` for traceability.
 """
 
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any, Dict, List
+from pathlib import Path
+from datetime import datetime
 import requests
+
+from .utils import detect_language
 
 
 class Pipeline:
     """Sequential pipeline for running Jarvik models."""
 
-    def __init__(self, base_url: str) -> None:
+    def __init__(self, base_url: str, log_dir: Path | None = None) -> None:
         self.base_url = base_url.rstrip("/")
+        self.log_dir = log_dir or Path(__file__).with_name("logs")
+        self.log_dir.mkdir(exist_ok=True)
 
     def _run_model(self, model: str, prompt: str) -> str:
         """Call a Jarvik model and return its output.
@@ -38,8 +43,27 @@ class Pipeline:
             # In case of connection issues or invalid responses, return empty string
             return ""
 
+    def _log_selection(self, language: str, models: List[str]) -> None:
+        """Write the chosen language and models into the log directory."""
+        timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+        path = self.log_dir / f"{timestamp}_pipeline.log"
+        with path.open("w", encoding="utf-8") as fh:
+            fh.write(f"language: {language}\n")
+            fh.write(f"models: {', '.join(models)}\n")
+
     def run(self, prompt: str) -> str:
         """Run the pipeline with the given prompt."""
-        first_output = self._run_model("Command R+", prompt)
-        final_output = self._run_model("StrCoder", first_output)
-        return final_output
+        language = detect_language(prompt)
+        if language in {"html", "php"}:
+            models = ["Code Llama"]
+        elif language == "python":
+            models = ["Command R+", "StrCoder"]
+        else:
+            models = ["Command R+"]
+
+        self._log_selection(language, models)
+
+        output = prompt
+        for model in models:
+            output = self._run_model(model, output)
+        return output
