@@ -16,9 +16,10 @@
 git clone https://github.com/your-org/jarvik-devlab.git
 cd jarvik-devlab
 ```
-2. Run `./install.sh` to create a `.venv` directory and install the package
-3. Activate the environment with `source .venv/bin/activate` (or `.venv\\Scripts\\activate` on Windows)
-4. Run `./upgrade.sh` anytime to update to the newest release
+2. Ensure that Python 3 is installed and accessible as `python3` or `python`
+3. Run `./install.sh` to create a `.venv` directory and install the package
+4. Activate the environment with `source .venv/bin/activate` (or `.venv\\Scripts\\activate` on Windows)
+5. Run `./upgrade.sh` anytime to update to the newest release
 
 ### Basic usage
 ```python
@@ -56,9 +57,10 @@ This project is released under the [MIT License](LICENSE).
 git clone https://github.com/your-org/jarvik-devlab.git
 cd jarvik-devlab
 ```
-2. Spusťte `./install.sh`, který vytvoří adresář `.venv` a nainstaluje balíček
-3. Prostředí aktivujete příkazem `source .venv/bin/activate` (na Windows `.venv\\Scripts\\activate`)
-4. Pro aktualizaci na nejnovější verzi použijte `./upgrade.sh`
+2. Ujistěte se, že máte nainstalován Python 3 a je dostupný jako `python3` nebo `python`
+3. Spusťte `./install.sh`, který vytvoří adresář `.venv` a nainstaluje balíček
+4. Prostředí aktivujete příkazem `source .venv/bin/activate` (na Windows `.venv\\Scripts\\activate`)
+5. Pro aktualizaci na nejnovější verzi použijte `./upgrade.sh`
 
 ### Základní použití
 ```python
