@@ -1,6 +1,6 @@
-from __future__ import annotations
-
 """Utility helpers for the DevLab package."""
+
+from __future__ import annotations
 
 import re
 
