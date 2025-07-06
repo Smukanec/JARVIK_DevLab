@@ -16,8 +16,8 @@
 git clone https://github.com/your-org/jarvik-devlab.git
 cd jarvik-devlab
 ```
-2. (optional) Create a virtual environment and activate it
-3. Run `./install.sh` to install the package locally
+2. Run `./install.sh` to create a `.venv` directory and install the package
+3. Activate the environment with `source .venv/bin/activate` (or `.venv\\Scripts\\activate` on Windows)
 4. Run `./upgrade.sh` anytime to update to the newest release
 
 ### Basic usage
@@ -56,8 +56,8 @@ This project is released under the [MIT License](LICENSE).
 git clone https://github.com/your-org/jarvik-devlab.git
 cd jarvik-devlab
 ```
-2. (volitelně) Vytvořte a aktivujte virtuální prostředí
-3. Spusťte `./install.sh` pro lokální instalaci balíčku
+2. Spusťte `./install.sh`, který vytvoří adresář `.venv` a nainstaluje balíček
+3. Prostředí aktivujete příkazem `source .venv/bin/activate` (na Windows `.venv\\Scripts\\activate`)
 4. Pro aktualizaci na nejnovější verzi použijte `./upgrade.sh`
 
 ### Základní použití
