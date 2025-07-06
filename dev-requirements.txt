@@ -1,0 +1,2 @@
+# Stubs for offline type checking
+types-requests
