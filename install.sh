@@ -2,13 +2,23 @@
 # Simple installation script for jarvik-devlab
 set -euo pipefail
 
+# Determine available Python command
+if command -v python3 >/dev/null 2>&1; then
+    PYTHON_CMD="$(command -v python3)"
+elif command -v python >/dev/null 2>&1; then
+    PYTHON_CMD="$(command -v python)"
+else
+    echo "Error: Python interpreter not found in PATH. Please install Python." >&2
+    exit 1
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 # Create local virtual environment if not present
 VENV_DIR=".venv"
 if [ ! -d "$VENV_DIR" ]; then
-    python3 -m venv "$VENV_DIR"
+    "$PYTHON_CMD" -m venv "$VENV_DIR"
 fi
 
 # Resolve pip binary inside the venv
