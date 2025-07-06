@@ -33,6 +33,12 @@ print(code)
 ### Contributing
 Contributions are welcome! Fork the repository, create a feature branch and open a pull request.
 
+For offline type checking, install the development requirements:
+
+```bash
+pip install -r dev-requirements.txt
+```
+
 ### Reporting issues
 If you encounter problems or have suggestions, please open an issue on GitHub.
 
