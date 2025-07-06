@@ -4,11 +4,13 @@ set -euo pipefail
 
 # Determine available Python command
 if command -v python3 >/dev/null 2>&1; then
-    PYTHON_CMD="$(command -v python3)"
+    PYTHON="$(command -v python3)"
 elif command -v python >/dev/null 2>&1; then
-    PYTHON_CMD="$(command -v python)"
+    PYTHON="$(command -v python)"
+elif command -v py >/dev/null 2>&1; then
+    PYTHON="py -3"
 else
-    echo "Error: Python interpreter not found in PATH. Please install Python." >&2
+    echo "Error: Python 3 interpreter not found. Please install Python 3." >&2
     exit 1
 fi
 
@@ -18,7 +20,7 @@ cd "$SCRIPT_DIR"
 # Create local virtual environment if not present
 VENV_DIR=".venv"
 if [ ! -d "$VENV_DIR" ]; then
-    "$PYTHON_CMD" -m venv "$VENV_DIR"
+    $PYTHON -m venv "$VENV_DIR"
 fi
 
 # Resolve pip binary inside the venv
