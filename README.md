@@ -21,6 +21,11 @@ cd jarvik-devlab
 4. Activate the environment with `source .venv/bin/activate` (or `.venv\\Scripts\\activate` on Windows)
 5. Run `./upgrade.sh` anytime to update to the newest release
 
+For Ubuntu Server 25.04 you can automate these steps with `setup_dev_lab.sh`:
+```bash
+./setup_dev_lab.sh
+```
+
 ### Basic usage
 ```python
 from devlab.manager import DevLabManager
@@ -67,6 +72,11 @@ cd jarvik-devlab
 3. Spusťte `./install.sh`, který vytvoří adresář `.venv` a nainstaluje balíček
 4. Prostředí aktivujete příkazem `source .venv/bin/activate` (na Windows `.venv\\Scripts\\activate`)
 5. Pro aktualizaci na nejnovější verzi použijte `./upgrade.sh`
+
+Pro Ubuntu Server 25.04 lze všechny kroky automatizovat skriptem `setup_dev_lab.sh`:
+```bash
+./setup_dev_lab.sh
+```
 
 ### Základní použití
 ```python
