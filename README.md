@@ -38,11 +38,13 @@ print(code)
 ### Models and architecture
 
 DevLab decides which Jarvik models to call based on the detected
-programming language:
+language or task:
 
-* **Python** → `Command R+` then `StrCoder`
-* **HTML** or **PHP** → `Code Llama`
-* **Other languages** → `Command R+`
+* **Python** → `codellama:7b-instruct` then `starcoder:7b`
+* **HTML**, **PHP** or **JSON** → `mistral:7b` then `llama3:8b`
+* **API** or **CLI** design → `llama3:8b` then `codellama:7b-instruct`
+* **General queries** → `llama3:8b`
+* **C**, **SQL** or other languages → `starcoder:7b` then `codellama:7b-instruct`
 
 Prompts and outputs are persisted in `DevLab/dev_memory/` while optional
 logs are stored in `DevLab/logs/`. The orchestration happens in
@@ -102,12 +104,13 @@ print(code)
 
 ### Modely a architektura
 
-DevLab vybírá Jarvik modely podle rozpoznaného jazyka vstupního
-promptu:
+DevLab vybírá Jarvik modely podle rozpoznaného jazyka nebo úkolu:
 
-* **Python** → `Command R+` a následně `StrCoder`
-* **HTML** nebo **PHP** → `Code Llama`
-* **Ostatní jazyky** → `Command R+`
+* **Python** → `codellama:7b-instruct` a poté `starcoder:7b`
+* **HTML**, **PHP** či **JSON** → `mistral:7b` a `llama3:8b`
+* **Návrh API** nebo **CLI** → `llama3:8b` a `codellama:7b-instruct`
+* **Obecné dotazy** → `llama3:8b`
+* **C**, **SQL** a ostatní jazyky → `starcoder:7b` a `codellama:7b-instruct`
 
 Každý prompt i výstup jsou uloženy do `DevLab/dev_memory/`. Volitelné
 logy vznikají v `DevLab/logs/`. O orchestraci se stará
