@@ -35,6 +35,19 @@ code = manager.run("Create a simple Hello World application")
 print(code)
 ```
 
+### Models and architecture
+
+DevLab decides which Jarvik models to call based on the detected
+programming language:
+
+* **Python** → `Command R+` then `StrCoder`
+* **HTML** or **PHP** → `Code Llama`
+* **Other languages** → `Command R+`
+
+Prompts and outputs are persisted in `DevLab/dev_memory/` while optional
+logs are stored in `DevLab/logs/`. The orchestration happens in
+`DevLab.dev_engine.DevEngine`.
+
 ### Contributing
 Contributions are welcome! Fork the repository, create a feature branch and open a pull request.
 
@@ -86,6 +99,19 @@ manager = DevLabManager()
 code = manager.run("Vytvoř jednoduchou aplikaci Hello World")
 print(code)
 ```
+
+### Modely a architektura
+
+DevLab vybírá Jarvik modely podle rozpoznaného jazyka vstupního
+promptu:
+
+* **Python** → `Command R+` a následně `StrCoder`
+* **HTML** nebo **PHP** → `Code Llama`
+* **Ostatní jazyky** → `Command R+`
+
+Každý prompt i výstup jsou uloženy do `DevLab/dev_memory/`. Volitelné
+logy vznikají v `DevLab/logs/`. O orchestraci se stará
+`DevLab.dev_engine.DevEngine`.
 
 ### Jak přispět
 Budeme rádi za pull requesty. Forkněte repozitář, vytvořte větev a odešlete návrh ke schválení.

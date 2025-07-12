@@ -5,6 +5,29 @@ communicates with the Jarvik API and stores context from every
 interaction. The module runs two AI models in sequence using
 `pipeline.Pipeline`. Its main entry point is `dev_engine.DevEngine`.
 
+## Model selection
+
+The pipeline inspects the prompt and chooses the Jarvik models to run:
+
+* **Python** prompts → `Command R+` then `StrCoder`
+* **HTML** or **PHP** → `Code Llama`
+* **Other languages** → `Command R+`
+
+Information about the detected language and selected models is saved in
+the `logs/` directory.
+
+## Architecture
+
+```
+prompt → DevEngine → Pipeline → [Jarvik models] → result
+              │                           │
+              └── dev_memory/             └── logs/
+```
+
+The `DevEngine` orchestrates model calls via the `Pipeline`. Every
+interaction is archived in `dev_memory/` and, if logging is enabled, a
+copy of the output is written to `logs/`.
+
 ## Purpose
 
 * Integrate Jarvik with auxiliary models for code generation.
