@@ -1,8 +1,8 @@
 """Pipeline module for running models sequentially.
 
-The pipeline inspects an input prompt, guesses the programming language
-and chooses appropriate Jarvik models. Information about the detected
-language and chosen models is written to ``logs/`` for traceability.
+The pipeline inspects an input prompt, determines the language or task
+and chooses an appropriate pair of Jarvik models. Information about the
+selection is written to ``logs/`` for traceability.
 """
 
 from __future__ import annotations
@@ -54,12 +54,17 @@ class Pipeline:
     def run(self, prompt: str) -> str:
         """Run the pipeline with the given prompt."""
         language = detect_language(prompt)
-        if language in {"html", "php"}:
-            models = ["Code Llama"]
+        lowered = prompt.lower()
+        if "api" in lowered or "cli" in lowered:
+            models = ["llama3:8b", "codellama:7b-instruct"]
+        elif language in {"html", "php", "json"}:
+            models = ["mistral:7b", "llama3:8b"]
         elif language == "python":
-            models = ["Command R+", "StrCoder"]
+            models = ["codellama:7b-instruct", "starcoder:7b"]
+        elif language in {"c", "sql"}:
+            models = ["starcoder:7b", "codellama:7b-instruct"]
         else:
-            models = ["Command R+"]
+            models = ["llama3:8b"]
 
         self._log_selection(language, models)
 

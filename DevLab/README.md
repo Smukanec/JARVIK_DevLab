@@ -9,9 +9,11 @@ interaction. The module runs two AI models in sequence using
 
 The pipeline inspects the prompt and chooses the Jarvik models to run:
 
-* **Python** prompts → `Command R+` then `StrCoder`
-* **HTML** or **PHP** → `Code Llama`
-* **Other languages** → `Command R+`
+* **Python** prompts → `codellama:7b-instruct` then `starcoder:7b`
+* **HTML**, **PHP** or **JSON** → `mistral:7b` then `llama3:8b`
+* **API** or **CLI** design → `llama3:8b` then `codellama:7b-instruct`
+* **General queries** → `llama3:8b`
+* **C**, **SQL** or other languages → `starcoder:7b` then `codellama:7b-instruct`
 
 Information about the detected language and selected models is saved in
 the `logs/` directory.
@@ -38,7 +40,8 @@ copy of the output is written to `logs/`.
 ## Development flow
 
 1. A prompt is passed to `DevEngine.run()`.
-2. The prompt is processed by the pipeline ("Command R+" -> "StrCoder").
+2. The prompt is processed by the pipeline according to the selected
+   model pair (e.g. `codellama:7b-instruct` -> `starcoder:7b`).
 3. The output is stored in `dev_memory/` and returned to the caller.
 4. If logging is enabled, the result is also written to `logs/`.
 
